@@ -1,8 +1,8 @@
 package com.mentoring.vehicleapp.vehicle;
 
 import com.mentoring.vehicleapp.user.User;
-import com.mentoring.vehicleapp.basic_entity.BasicEntity;
-import com.mentoring.vehicleapp.vehicle_equipment.VehicleEquipment;
+import com.mentoring.vehicleapp.common.BasicEntity;
+import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class Vehicle extends BasicEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "vehicle")
+    @OneToMany(mappedBy = "vehicle", orphanRemoval = true)
     private List<VehicleEquipment> vehicleEquipment;
     private String brand;
     private String model;

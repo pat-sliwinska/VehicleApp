@@ -1,7 +1,7 @@
 package com.mentoring.vehicleapp.equipment;
 
-import com.mentoring.vehicleapp.basic_entity.BasicEntity;
-import com.mentoring.vehicleapp.vehicle_equipment.VehicleEquipment;
+import com.mentoring.vehicleapp.common.BasicEntity;
+import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Equipment extends BasicEntity {
 
-    @OneToMany(mappedBy = "equipment")
+    @OneToMany(mappedBy = "equipment", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<VehicleEquipment> vehicleEquipment;
     private String name;
 
