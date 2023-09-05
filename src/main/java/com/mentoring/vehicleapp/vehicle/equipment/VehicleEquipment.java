@@ -14,8 +14,7 @@ import lombok.Setter;
 public class VehicleEquipment extends BasicEntity {
 
     @EmbeddedId
-    private VehicleEquipmentId id = new VehicleEquipmentId();
-
+    private VehicleEquipmentId id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;

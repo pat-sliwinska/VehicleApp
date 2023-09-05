@@ -20,7 +20,7 @@ public class Vehicle extends BasicEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "vehicle", orphanRemoval = true)
+    @OneToMany(mappedBy = "vehicle", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<VehicleEquipment> vehicleEquipment;
     private String brand;
     private String model;
