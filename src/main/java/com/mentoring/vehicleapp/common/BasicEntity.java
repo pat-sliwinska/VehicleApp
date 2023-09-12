@@ -2,11 +2,15 @@ package com.mentoring.vehicleapp.common;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class BasicEntity {
+public abstract class BasicEntity implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = -454465034846645641L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

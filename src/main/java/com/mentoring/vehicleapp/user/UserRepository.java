@@ -9,6 +9,10 @@ public interface UserRepository {
 
     List<User> findAll();
 
+    List<User> x();
+
+    List<User> findAllWithCarEquipment();
+
     Optional<User> findById(Long id);
 
     void deleteById(Long id);

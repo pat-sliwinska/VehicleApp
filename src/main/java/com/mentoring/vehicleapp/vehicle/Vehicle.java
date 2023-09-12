@@ -1,5 +1,6 @@
 package com.mentoring.vehicleapp.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mentoring.vehicleapp.user.User;
 import com.mentoring.vehicleapp.common.BasicEntity;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
@@ -17,8 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Vehicle extends BasicEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
     @OneToMany(mappedBy = "vehicle", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<VehicleEquipment> vehicleEquipment;
@@ -30,6 +32,7 @@ public class Vehicle extends BasicEntity {
     private int productionYear;
     @Column(name = "top_speed")
     private int topSpeed;
+    @Enumerated(EnumType.STRING)
     private VehicleType type;
 
     public Vehicle(String brand, String model, VehicleType type) {

@@ -11,14 +11,16 @@ import lombok.Setter;
 @Table(name = "vehicle_equipment")
 @Getter
 @Setter
-public class VehicleEquipment extends BasicEntity {
+public class VehicleEquipment {
 
     @EmbeddedId
     private VehicleEquipmentId id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id")
+    @MapsId("vehicleId")
     private Vehicle vehicle;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_id")
+    @MapsId("equipmentId")
     private Equipment equipment;
 }
