@@ -1,6 +1,7 @@
 package com.mentoring.vehicleapp.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mentoring.vehicleapp.user.User;
 import com.mentoring.vehicleapp.common.BasicEntity;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
@@ -22,8 +23,11 @@ public class Vehicle extends BasicEntity {
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
+
     @OneToMany(mappedBy = "vehicle", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<VehicleEquipment> vehicleEquipment;
+
     private String brand;
     private String model;
     @Column(name = "number_of_seats")

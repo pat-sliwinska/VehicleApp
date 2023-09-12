@@ -1,5 +1,6 @@
 package com.mentoring.vehicleapp.equipment;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mentoring.vehicleapp.common.BasicEntity;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
 import jakarta.persistence.*;
@@ -17,6 +18,7 @@ import java.util.List;
 public class Equipment extends BasicEntity {
 
     @OneToMany(mappedBy = "equipment", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<VehicleEquipment> vehicleEquipment;
     private String name;
 

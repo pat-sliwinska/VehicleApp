@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -19,12 +19,8 @@ public class UserService {
         return repository.save(user);
     }
 
-//    public List<User> findAll() {
-//        return repository.findAll();
-//    }
-
     public List<User> findAll() {
-        return repository.x();
+        return repository.findAll();
     }
 
     public List<User> findAllWithCarEquipment() {return repository.findAllWithCarEquipment();}
