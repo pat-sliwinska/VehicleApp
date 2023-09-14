@@ -17,12 +17,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends BasicEntity implements Serializable {
+public class User extends BasicEntity {
 
-    @Serial
-    private static final long serialVersionUID = -454465034846645641L;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonManagedReference
     private List<Vehicle> vehicles;
 

@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping("/equipment/{vehicleType}")
-    List<UserCarEquipmentDTO> readUserCarEquipment(@PathVariable String vehicleType) {
-        return userCarEquipmentHandler.findAllWithCarEquipment(vehicleType);
+    List<UserCarEquipmentDTO> readUserWithVehicleTypeEquipment(@PathVariable String vehicleType) {
+        return userCarEquipmentHandler.findAllWithVehicleType(vehicleType);
     }
 
     @PostMapping

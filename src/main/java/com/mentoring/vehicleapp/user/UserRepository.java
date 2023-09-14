@@ -9,7 +9,7 @@ public interface UserRepository {
 
     List<User> findAll();
 
-    List<User> findAllWithCarEquipment();
+    List<User> findAllWithVehicleType(String vehicleType);
 
     Optional<User> findById(Long id);
 

@@ -4,7 +4,6 @@ import com.mentoring.vehicleapp.equipment.Equipment;
 import com.mentoring.vehicleapp.user.User;
 import com.mentoring.vehicleapp.user.UserCarEquipmentDTO;
 import com.mentoring.vehicleapp.user.UserService;
-import com.mentoring.vehicleapp.vehicle.Vehicle;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
 import com.mentoring.vehicleapp.vehicle.util.VehicleTypeValidator;
 import org.springframework.stereotype.Component;
@@ -17,14 +16,16 @@ import java.util.stream.Collectors;
 public class UserCarEquipmentHandler {
 
     private final UserService service;
+    private final VehicleTypeValidator validator;
 
-    public UserCarEquipmentHandler(UserService service) {
+    public UserCarEquipmentHandler(UserService service, VehicleTypeValidator validator) {
         this.service = service;
+        this.validator = validator;
     }
 
-    public List<UserCarEquipmentDTO> findAllWithCarEquipment(String vehicleType) {
-        if(VehicleTypeValidator.vehicleTypeExists(vehicleType)) {
-            return service.findAllWithCarEquipment().stream().map(this::mapToUserCarEqDTO).collect(Collectors.toList());
+    public List<UserCarEquipmentDTO> findAllWithVehicleType(String vehicleType) {
+        if(validator.vehicleTypeExists(vehicleType)) {
+            return service.findAllWithVehicleType(vehicleType).stream().map(this::mapToUserCarEqDTO).collect(Collectors.toList());
         } else throw new IllegalArgumentException("Invalid vehicle type");
     }
 

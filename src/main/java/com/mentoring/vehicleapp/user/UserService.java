@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -23,7 +22,7 @@ public class UserService {
         return repository.findAll();
     }
 
-    public List<User> findAllWithCarEquipment() {return repository.findAllWithCarEquipment();}
+    public List<User> findAllWithVehicleType(String vehicleType) {return repository.findAllWithVehicleType(vehicleType);}
 
     Optional<User> findById(Long id) {
         return repository.findById(id);
