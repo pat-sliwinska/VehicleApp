@@ -11,7 +11,7 @@ public interface SqlUserRepository extends JpaRepository<User, Long>, UserReposi
 
     @Override
     @Query(nativeQuery = true, value = "SELECT * FROM APP_USER" +
-            " WHERE exists (select * from VEHICLE WHERE VEHICLE.USER_ID = APP_USER.ID AND VEHICLE.TYPE = 'CAR')")
+            " WHERE exists (select * from VEHICLE WHERE VEHICLE.USER_ID = APP_USER.ID AND VEHICLE.TYPE = ?1)")
     List<User> findAllWithVehicleType(String vehicleType);
 
    @Override

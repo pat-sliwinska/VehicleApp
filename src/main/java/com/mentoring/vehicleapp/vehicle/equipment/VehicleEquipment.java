@@ -22,13 +22,13 @@ public class VehicleEquipment implements Serializable {
     @EmbeddedId
     private VehicleEquipmentId id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "vehicle_id")
     @MapsId("vehicleId")
     @JsonBackReference
     private Vehicle vehicle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "equipment_id")
     @MapsId("equipmentId")
     @JsonBackReference

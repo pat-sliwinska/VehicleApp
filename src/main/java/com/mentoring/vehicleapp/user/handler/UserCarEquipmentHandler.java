@@ -4,8 +4,10 @@ import com.mentoring.vehicleapp.equipment.Equipment;
 import com.mentoring.vehicleapp.user.User;
 import com.mentoring.vehicleapp.user.UserCarEquipmentDTO;
 import com.mentoring.vehicleapp.user.UserService;
+import com.mentoring.vehicleapp.vehicle.VehicleType;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
 import com.mentoring.vehicleapp.vehicle.util.VehicleTypeValidator;
+import org.apache.commons.lang3.EnumUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,19 +27,19 @@ public class UserCarEquipmentHandler {
 
     public List<UserCarEquipmentDTO> findAllWithVehicleType(String vehicleType) {
         if(validator.vehicleTypeExists(vehicleType)) {
-            return service.findAllWithVehicleType(vehicleType).stream().map(this::mapToUserCarEqDTO).collect(Collectors.toList());
+            return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream().map(user -> mapToUserCarEqDTO(user, vehicleType)).collect(Collectors.toList());
         } else throw new IllegalArgumentException("Invalid vehicle type");
     }
 
-    private UserCarEquipmentDTO mapToUserCarEqDTO(User user) {
+    private UserCarEquipmentDTO mapToUserCarEqDTO(User user, String vehicleType) {
         UserCarEquipmentDTO userDTO = UserCarEquipmentDTO.builder()
                 .name(user.getName())
-                .equipment(getEqFromUser(user))
+                .equipment(getEqFromUser(user, vehicleType))
                 .build();
         return userDTO;
     }
 
-    private Set<Equipment> getEqFromUser(User user) {
-        return user.getVehicles().stream().flatMap(vehicle -> vehicle.getVehicleEquipment().stream()).map(VehicleEquipment::getEquipment).collect(Collectors.toSet());
+    private Set<Equipment> getEqFromUser(User user, String vehicleType) {
+        return user.getVehicles().stream().filter(vehicle -> vehicle.getType() == EnumUtils.getEnumIgnoreCase(VehicleType.class ,vehicleType)).flatMap(vehicle -> vehicle.getVehicleEquipment().stream()).map(VehicleEquipment::getEquipment).collect(Collectors.toSet());
     }
 }
