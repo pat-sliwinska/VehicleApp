@@ -9,9 +9,11 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository repository;
+    private final UserExtendedRepository extendedRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserExtendedRepository extendedRepository) {
         this.repository = userRepository;
+        this.extendedRepository = extendedRepository;
     }
 
     public User save(User user) {
@@ -23,6 +25,7 @@ public class UserService {
     }
 
     public List<User> findAllWithVehicleType(String vehicleType) {return repository.findAllWithVehicleType(vehicleType);}
+    public List<UserForVehicleTypeEquipmentDTO> findAllForVehicleType(String vehicleType) {return extendedRepository.findAllForVehicleType(vehicleType);}
 
     Optional<User> findById(Long id) {
         return repository.findById(id);

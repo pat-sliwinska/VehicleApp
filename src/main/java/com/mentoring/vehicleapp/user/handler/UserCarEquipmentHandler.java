@@ -2,7 +2,8 @@ package com.mentoring.vehicleapp.user.handler;
 
 import com.mentoring.vehicleapp.equipment.Equipment;
 import com.mentoring.vehicleapp.user.User;
-import com.mentoring.vehicleapp.user.UserCarEquipmentDTO;
+import com.mentoring.vehicleapp.user.UserForVehicleTypeEquipmentDTO;
+import com.mentoring.vehicleapp.user.UserVehicleTypeEquipmentDTO;
 import com.mentoring.vehicleapp.user.UserService;
 import com.mentoring.vehicleapp.vehicle.VehicleType;
 import com.mentoring.vehicleapp.vehicle.equipment.VehicleEquipment;
@@ -25,18 +26,22 @@ public class UserCarEquipmentHandler {
         this.validator = validator;
     }
 
-    public List<UserCarEquipmentDTO> findAllWithVehicleType(String vehicleType) {
+    public List<UserVehicleTypeEquipmentDTO> findAllWithVehicleType(String vehicleType) {
         if(validator.vehicleTypeExists(vehicleType)) {
             return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream().map(user -> mapToUserCarEqDTO(user, vehicleType)).collect(Collectors.toList());
         } else throw new IllegalArgumentException("Invalid vehicle type");
     }
+    public List<UserForVehicleTypeEquipmentDTO> findAllForVehicleType(String vehicleType) {
+        if(validator.vehicleTypeExists(vehicleType)) {
+            return service.findAllForVehicleType(vehicleType.toUpperCase());
+        } else throw new IllegalArgumentException("Invalid vehicle type");
+    }
 
-    private UserCarEquipmentDTO mapToUserCarEqDTO(User user, String vehicleType) {
-        UserCarEquipmentDTO userDTO = UserCarEquipmentDTO.builder()
+    private UserVehicleTypeEquipmentDTO mapToUserCarEqDTO(User user, String vehicleType) {
+        return UserVehicleTypeEquipmentDTO.builder()
                 .name(user.getName())
                 .equipment(getEqFromUser(user, vehicleType))
                 .build();
-        return userDTO;
     }
 
     private Set<Equipment> getEqFromUser(User user, String vehicleType) {
