@@ -1,4 +1,4 @@
-package com.mentoring.vehicleapp.shared.common.common.http;
+package com.mentoring.vehicleapp.shared.common.http;
 
 import lombok.Builder;
 import lombok.Getter;

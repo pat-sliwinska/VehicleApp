@@ -1,7 +1,7 @@
 package com.mentoring.vehicleapp.module.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.mentoring.vehicleapp.shared.common.common.model.BasicEntity;
+import com.mentoring.vehicleapp.shared.common.model.BasicEntity;
 import com.mentoring.vehicleapp.module.vehicle.Vehicle;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -29,7 +29,9 @@ public class UserCarEquipmentHandler {
     public List<UserVehicleTypeEquipmentDTO> findAllWithVehicleType(String vehicleType) {
         if(validator.vehicleTypeExists(vehicleType)) {
             //TODO sonar issue
-            return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream().map(user -> mapToUserCarEqDTO(user, vehicleType)).collect(Collectors.toList());
+            return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream()
+                    .map(user -> mapToUserCarEqDTO(user, vehicleType))
+                    .collect(Collectors.toList());
         } else throw new IllegalArgumentException("Invalid vehicle type");
     }
     public List<UserForVehicleTypeEquipmentDTO> findAllForVehicleType(String vehicleType) {

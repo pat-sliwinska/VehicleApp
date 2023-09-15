@@ -1,4 +1,4 @@
-package com.mentoring.vehicleapp.shared.common.common.model;
+package com.mentoring.vehicleapp.shared.common.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.mentoring.vehicleapp.shared.common.common.http;
+package com.mentoring.vehicleapp.shared.common.http;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
