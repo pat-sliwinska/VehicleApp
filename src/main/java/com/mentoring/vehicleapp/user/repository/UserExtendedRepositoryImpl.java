@@ -19,7 +19,7 @@ public class UserExtendedRepositoryImpl implements UserExtendedRepository {
     public List<UserVehicleEqTempDTO> findAllForVehicleType(String vehicleType) {
 
         //METODA 1 - użycie konstruktora
-
+        //TODO: sprawdzić left join
         return entityManager.createQuery("""
                 SELECT NEW com.mentoring.vehicleapp.user.dto.UserVehicleEqTempDTO(u.id, u, eq)
                 FROM User u
