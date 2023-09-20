@@ -2,6 +2,7 @@ package com.mentoring.vehicleapp.shared.clients.json.placeholder;
 
 import com.mentoring.vehicleapp.shared.clients.json.placeholder.model.CommentResponse;
 import com.mentoring.vehicleapp.shared.clients.json.placeholder.model.PostResponse;
+import com.mentoring.vehicleapp.shared.common.http.WebClientConnector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JsonPlaceholderConnectorImpl implements JsonPlaceholderApiConnector {
 
+    private WebClientConnector webClientConnector;
 
     @Override
     public Optional<PostResponse[]> getPosts() {
-        return null;
+        return webClientConnector.retrieveRequest();
     }
 
     @Override
