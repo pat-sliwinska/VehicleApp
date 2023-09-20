@@ -1,4 +1,6 @@
-package com.mentoring.vehicleapp.user;
+package com.mentoring.vehicleapp.user.repository;
+
+import com.mentoring.vehicleapp.user.User;
 
 import java.util.List;
 import java.util.Optional;

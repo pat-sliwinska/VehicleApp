@@ -1,5 +1,7 @@
 package com.mentoring.vehicleapp.user;
 
+import com.mentoring.vehicleapp.user.dto.UserForVehicleTypeEquipmentDTO;
+import com.mentoring.vehicleapp.user.dto.UserVehicleTypeEquipmentDTO;
 import com.mentoring.vehicleapp.user.handler.UserCarEquipmentHandler;
 import org.springframework.web.bind.annotation.*;
 
