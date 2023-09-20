@@ -66,14 +66,3 @@ public class UserExtendedRepositoryImpl implements UserExtendedRepository {
     }
 
 }
-
-
-//SELECT *
-//        FROM APP_USER
-//        LEFT JOIN VEHICLE
-//        ON(app_user.id = vehicle.user_id)
-//        LEFT JOIN VEHICLE_EQUIPMENT
-//        ON(vehicle.id = vehicle_equipment.vehicle_id)
-//        LEFT JOIN EQUIPMENT
-//        ON(EQUIPMENT.id = vehicle_equipment.equipment_id)
-//        WHERE vehicle.type = 'BOAT'

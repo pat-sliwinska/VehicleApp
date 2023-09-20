@@ -31,7 +31,9 @@ public class UserCarEquipmentHandler {
 
     public List<UserVehicleTypeEquipmentDTO> findAllWithVehicleType(String vehicleType) {
         if(validator.vehicleTypeExists(vehicleType)) {
-            return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream().map(user -> mapToUserCarEqDTO(user, vehicleType)).collect(Collectors.toList());
+            return service.findAllWithVehicleType(vehicleType.toUpperCase()).stream()
+                    .map(user -> mapToUserCarEqDTO(user, vehicleType))
+                    .collect(Collectors.toList());
         } else throw new IllegalArgumentException("Invalid vehicle type");
     }
     public List<UserForVehicleTypeEquipmentDTO> findAllForVehicleType(String vehicleType) {
@@ -44,7 +46,10 @@ public class UserCarEquipmentHandler {
         List<UserForVehicleTypeEquipmentDTO> dtoList = new ArrayList<>();
         temporaryDTOList.forEach(result -> {
             if(dtoList.stream().anyMatch(dto -> dto.getId().equals(result.getId()))) {
-                UserForVehicleTypeEquipmentDTO existingDto = dtoList.stream().filter(dto -> dto.getId().equals(result.getId())).findFirst().get();
+                UserForVehicleTypeEquipmentDTO existingDto = dtoList.stream()
+                        .filter(dto -> dto.getId().equals(result.getId()))
+                        .findFirst()
+                        .get();
                 existingDto.getEquipment().add(result.getEquipment());
             } else {
                 UserForVehicleTypeEquipmentDTO newDto = UserForVehicleTypeEquipmentDTO.builder()
