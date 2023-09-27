@@ -20,5 +20,9 @@ public class PostController {
     List<PostDTO> getAllPostsWithComments() {
         return getAllPostsWithCommentsHandler.getAllPostsWithComments();
     }
+    @GetMapping("/async")
+    List<PostDTO> getAllPostsWithCommentsAsync() {
+        return getAllPostsWithCommentsHandler.getAllPostsWithCommentsAsync();
+    }
 
 }

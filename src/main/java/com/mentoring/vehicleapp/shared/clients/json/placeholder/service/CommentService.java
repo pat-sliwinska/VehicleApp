@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +22,13 @@ public class CommentService {
         CommentResponse[] commentsByPost = jsonPlaceholderApiConnector.getCommentsByPost(id).orElse(new CommentResponse[]{});
         List<CommentResponse> commentResponseList = Lists.newArrayList(commentsByPost);
         return commentMapper.commentResponseToCommentDTOList(commentResponseList);
+    }
+
+    public CompletableFuture<List<CommentDTO>> getCommentsDTOListAsync(Long id) {
+        return CompletableFuture.supplyAsync(() -> {
+            CommentResponse[] commentsByPost = jsonPlaceholderApiConnector.getCommentsByPost(id).orElse(new CommentResponse[]{});
+            List<CommentResponse> commentResponseList = Lists.newArrayList(commentsByPost);
+            return commentMapper.commentResponseToCommentDTOList(commentResponseList);
+        });
     }
 }
